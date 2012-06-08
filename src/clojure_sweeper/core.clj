@@ -12,7 +12,7 @@
 (defpage "/mines" []
   (html
     [:head (include-css "minefield.css")]
-    [:body (html-minefield (minefield2))]
+    [:body (html-minefield (minefield))]
 ))
 
 (defn -main []
