@@ -1,5 +1,4 @@
 (ns minefield
-  (:use clojure.contrib.combinatorics)
   (:use clojure.test))
 
 (with-test
@@ -26,8 +25,9 @@
 
 (with-test 
   (defn neighbours [cell]
-    (cartesian-product (range (dec (first cell)) (+ (first cell) 2))
-                       (range (dec (second cell)) (+ (second cell) 2))))
+    (for [x (range (dec (first cell)) (+ (first cell) 2)) 
+          y (range (dec (second cell)) (+ (second cell) 2))] [x y]
+    ))
   (is (= (neighbours [2 2]) [[1 1] [1 2] [1 3] [2 1] [2 2] [2 3] [3 1] [3 2] [3 3]]))
 )
 
