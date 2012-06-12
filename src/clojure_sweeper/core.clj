@@ -7,9 +7,9 @@
 
 (defn html-minefield [minefield]
   (defn html-row  [row]  [:tr (map html-cell row)])
-  [:div {:id "minefield"} [:table (map html-row minefield)]])
+  [:div {:class "minefield"} [:table (map html-row minefield)]])
 
-(defpage "/mines" []
+(defpage "/" []
   (html
     [:head (include-css "minefield.css")]
     [:body (html-minefield (minefield))]
