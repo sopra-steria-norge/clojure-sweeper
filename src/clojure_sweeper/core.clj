@@ -6,8 +6,10 @@
   (:require [noir.server :as server]))
 
 (defn html-minefield [minefield]
-  (defn html-row  [row]  [:tr (map html-cell row)])
-  [:div {:class "minefield"} [:table (map html-row minefield)]])
+  (defn html-row  [row-index] 
+    [:tr (map #(html-cell minefield [row-index %]) (cols minefield))])
+  [:div {:class "minefield"}
+    [:table (map html-row (rows minefield))]])
 
 (defpage "/" []
   (html
