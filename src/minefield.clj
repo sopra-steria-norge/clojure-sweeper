@@ -25,10 +25,11 @@
 
 (with-test 
   (defn neighbours [cell]
-    (for [x (range (dec (first cell)) (+ (first cell) 2)) 
-          y (range (dec (second cell)) (+ (second cell) 2))] [x y]
-    ))
-  (is (= (neighbours [2 2]) [[1 1] [1 2] [1 3] [2 1] [2 2] [2 3] [3 1] [3 2] [3 3]]))
+    (remove #{cell}
+      (for [x (range (dec (first cell)) (+ (first cell) 2)) 
+            y (range (dec (second cell)) (+ (second cell) 2))] [x y]
+    )))
+  (is (= (neighbours [2 2]) [[1 1] [1 2] [1 3] [2 1] [2 3] [3 1] [3 2] [3 3]]))
 )
 
 (with-test
