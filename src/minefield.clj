@@ -38,15 +38,14 @@
   (is (= (count-neighbour-mines [[\* 0 \*] [\* 0 0]] [0 1]) 3))
 )
 
-(defn minecell [cells cell] 
-  (if (mine? cells cell) \*
-      (count-neighbour-mines cells cell)))
-
 (with-test
   (defn minefield [cells] 
+    (defn minecell [cell]
+      (if (mine? cells cell) \*
+          (count-neighbour-mines cells cell)))
     (map 
-      (fn [row] (map (fn [col] (minecell cells [row col])) 
-                     (range 0 (cols cells)))) 
+      (fn [row] (map (fn [col] (minecell [row col]))
+                     (range 0 (cols cells))))
       (range 0 (rows cells))))
   (is (= (rows (minefield [[0 0 0] [0 0 0]])) 2))
   (is (= (cols (minefield [[0 0 0] [0 0 0]])) 3))
